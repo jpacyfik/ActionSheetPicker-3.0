@@ -177,8 +177,11 @@
 - (NSArray *)selection {
     NSMutableArray * array = [NSMutableArray array];
     for (int i = 0; i < self.data.count; i++) {
-        id object = self.data[i][[(UIPickerView *)self.pickerView selectedRowInComponent:(NSInteger)i]];
-        [array addObject: object];
+        NSArray *subArray = self.data[i];
+        if ([subArray count] != 0) {
+            id object = self.data[i][[(UIPickerView *)self.pickerView selectedRowInComponent:(NSInteger)i]];
+            [array addObject: object];
+        };
     }
     return [array copy];
 }
